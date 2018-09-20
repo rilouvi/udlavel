@@ -13,6 +13,12 @@ class Post extends Model
     public function author(){
         return $this->belongsTo(User::class);
     }
+    //\\ Pada Video 017 ADD CATEGORY //\\
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
 
     public function getImageUrlAttribute($value){
         $images_url = "";
