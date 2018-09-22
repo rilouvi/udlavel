@@ -98,6 +98,14 @@ class BlogController extends Controller
         // $post=Post::published()->findOrFail($id);
         //\\Ganti jadi yang bawah karena pindah ke provider//\\
         // return view("blog.show", compact('post','categories'));
+
+        //\\Update post view_count Cara Pertama//\\
+        $viewCount=$post->view_count + 1;
+        $post->update(['view_count'=>$viewCount]);
+
+        //\\Update post view_count Cara Kedua//\\
+        $post->increment('view_count');
+
         return view("blog.show", compact('post'));
     }
 }

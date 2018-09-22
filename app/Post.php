@@ -8,6 +8,9 @@ use GrahamCampbell\Markdown\Facades\Markdown;
 
 class Post extends Model
 {
+    //\\Update post view_count Cara Pertama//\\
+    protected $fillable=['view_count'];
+
     protected $dates=['published_at'];
 
     public function author(){
@@ -25,6 +28,17 @@ class Post extends Model
         if( ! is_null($this->images)){
             $imagesPath = public_path() . "/img/" . $this->images;
             if(file_exists($imagesPath)) $images_url = asset("img/" . $this->images);
+        }
+        return $images_url;
+    }
+
+    public function getImageThumbUrlAttribute($value){
+        $images_url = "";
+        if( ! is_null($this->images)){
+            $ext = substr(strrchr($this->images, '.'), 1);
+            $thumbnail = str_replace(".{$ext}", "_thumb.{$ext}", $this->images);
+            $imagesPath = public_path() . "/img/" . $thumbnail;
+            if(file_exists($imagesPath)) $images_url = asset("img/" . $thumbnail);
         }
         return $images_url;
     }
@@ -49,6 +63,11 @@ class Post extends Model
     public function scopeLatestFirst($query)
     {
         return $query->orderBy('created_at','desc');
+    }
+
+    public function scopePopular($query)
+    {
+        return $query->orderBy('view_count','desc');
     }
 
     public function scopePublished($query)
