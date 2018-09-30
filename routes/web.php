@@ -14,7 +14,13 @@
 // Route::get('/', function () {
 //     return view('blog.index');
 // });
-
+/*
+Pengububahan route disesuaikan
+dengan kebutuhan, memanggil class
+controller dengan @(method)nya
+dan as sebagai view folder dan
+file blade dihubungkan dengan . (titik)
+*/
 Route::get('/', [
     'uses'=>'BlogController@index',
     'as'=>'blog',
@@ -38,3 +44,8 @@ Route::get('/author/{author}', [
     'uses'=>'BlogController@author',
     'as'=>'author'
 ]);
+
+//Route otomatis setelah membuat auth
+Auth::routes();
+
+Route::get('/home', 'Backend\HomeController@index')->name('home');

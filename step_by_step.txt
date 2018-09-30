@@ -1,0 +1,49 @@
+1. Install Laravel dengan composer
+2. Setup aplikasi dengan:
+    a. Copy folder CSS, Img, Js, font ke Folder Public
+    b.  Setup Route dan env
+
+
+
+
+
+
+
+########## BACK END ###########
+1. Membuat Authentification
+    a. php artisan make:auth
+    b. web.php terdapat Auth::routes()
+    c. di resources/views ada folder layouts dan file app.blade.php
+    d. di resources/views ada juga folder auth dan isinya
+    e. di resources/views ada file home.blade.php
+    f. di Controllers terdapat HomeController.php
+2. Pindahkan template asset ke public dan bedakan dengan user
+    a. bisa dengan membuat folder baru di public
+    b. ganti nama folder yang berbeda
+    c. ganti nama filenya saja
+3. Pada resources/layouts/app.blade.php
+    a. Ganti Head dan Footer sesuai kebutuhan
+    b. Layout dan asset menyesuaikan
+4. Membuat backend layouts
+    a. Membuat layout backend.blade.php
+    b. Mengubah source asset
+    c. Mengubah @extends di home.blade.php
+5. Memisahkan bagian konten
+    a. Navbar
+    b. Menu/Sidebar
+    c. Content
+    d. Index/Main
+6. Membuat link logout dan link Menu
+7. Membuat Controller backend pada folder baru
+8. Bisa dikasih nama Controller
+    a. Folder Backend di Controller
+    b. php artisan make:controller Backend/BackController
+9. Buat navbar dan sidebar sesuai dengan user auth
+10. Redirect saat logout ke login user
+    a. Illuminate / Foundation / Auth / AuthenticateUser.php
+    b. Ubah redirect di fungsi logout menjadi '/login'
+12. Agar tidak dapat register
+    a. Illuminate / Foundation / Auth / RegisterUser.php
+    b. Copi Function register dan showregisterform
+    c. ganti menjadi abort(404);
+
