@@ -49,3 +49,17 @@ Route::get('/author/{author}', [
 Auth::routes();
 
 Route::get('/home', 'Backend\HomeController@index')->name('home');
+
+// Menambahkan route untuk admin
+// Jika menggunakan resource, maka nanti pada pemanggilan
+// hanya memanggil blog .create .index .destroy saja
+// tanpa memangil backend.blog .crud
+Route::resource('/backend/blog', 'Backend\BlogBackController');
+
+// Sudah ada routenya tapi gak mau jalan.
+// Pakai dibawah ini, hanya saja masalah lain ada lagi
+// Route::resource('/backend/blog', 'Backend\BlogBackController', [
+//     'names' => [
+//         'create' => 'backend.blog.create'
+//     ]
+// ]);

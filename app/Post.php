@@ -60,6 +60,29 @@ class Post extends Model
         return $this->excerpt ? Markdown::convertToHtml(e($this->excerpt)) : NULL;
     }
 
+    //\\Method untuk Admin//\\
+    // Method untuk mengganti format tanggal
+    public function dateFormatted($showTimes = false)
+    {
+        $format = "d/m/Y";
+        if($showTimes) $format = $format . "H:i:s";
+        return $this->created_at->format($format);
+    }
+
+    public function publicationLabel()
+    {
+        if (! $this->published_at) {
+            return '<span class="label label-warning">Draft</span>';
+        }
+        elseif ($this->published_at && $this->published_at->isFuture()) {
+            return '<span class="label label-info">Schedule</span>';
+        }
+        else {
+            return '<span class="label label-success">Published</span>';
+        }
+    }
+    //\\END Method untuk Admin//\\
+
     public function scopeLatestFirst($query)
     {
         return $query->orderBy('created_at','desc');
