@@ -9,7 +9,8 @@ use GrahamCampbell\Markdown\Facades\Markdown;
 class Post extends Model
 {
     //\\Update post view_count Cara Pertama//\\
-    protected $fillable=['view_count'];
+    // protected $fillable=['view_count'];
+    protected $fillable=['title','slug','excerpt','body','published_at','category_id','view_count'];
 
     protected $dates=['published_at'];
 
@@ -20,6 +21,12 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    // \\ Untuk atribute publish at //\\
+    public function setPublishedAtAttribute($value)
+    {
+        $this->attributes['published_at'] = $value ?: NULL ;
     }
 
 

@@ -46,4 +46,22 @@
     a. Illuminate / Foundation / Auth / RegisterUser.php
     b. Copi Function register dan showregisterform
     c. ganti menjadi abort(404);
-
+//\\==================ALL POST=====================//\\
+13. Membuat View sesuai dengan theme
+14. Membuat Controller Backend
+15. Edit Routenya sesuaikan dengan versinya
+16. Modelnya disesuaikan
+//\\==========ADD NEW============//\\
+17. Menggunakan laravel collection/html (laravelcollective.com)
+    a. composer require "laravelcollective/html"
+    b. tunggu proses selesai
+    c. Panggil di config / app.php
+    d. bagian providers dan aliases
+18. Rapikan Form di views dengan menambahkan Form
+19. Di Controller tambahkan untuk menyimpan data
+20. Di Model tambahkan untuk simpan data ke database
+21. Membuat Post request dengan
+    a. php artisan make:request PostRequest
+    b. Pindah request dari Controller ke post request
+    c. Terdapat folder Requests di App\Http\
+22. Pada Controller tambahkan use folder requests

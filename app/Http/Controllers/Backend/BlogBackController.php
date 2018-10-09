@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests;
 
 // Gunakan Model Post
 use App\Post;
@@ -35,9 +36,9 @@ class BlogBackController extends BackController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Post $post)
     {
-        dd('create new blog post');
+        return view('backend.blog.create',compact('post'));
     }
 
     /**
@@ -46,9 +47,22 @@ class BlogBackController extends BackController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    
+    // public function store(Request $request)
+    // Ubah karena ada postrequest
+
+    public function store(Requests\PostRequest $request)
     {
-        //
+        // Pindah ke request
+        // $this->validate($request,[
+        //     'title'=>'required',
+        //     'slug'=>'rewuired|unique:posts',
+        //     'body'=>'required',
+        //     'published_at'=>'date_format:Y-m-d H:i:s',
+        //     'category_id'=>'required'
+        // ]);
+        $request->user()->posts()->create($request->all());
+        return redirect('/backend/blog')->with('message','Your Post Created Successfully');
     }
 
     /**
