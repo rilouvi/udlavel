@@ -120,6 +120,9 @@ return [
     */
 
     'providers' => [
+
+        Intervention\Image\ImageServiceProvider::class,
+
         //\\ Laravel Collective Html //\\
         Collective\Html\HtmlServiceProvider::class,
         
@@ -181,6 +184,7 @@ return [
     */
 
     'aliases' => [
+        'Image' => Intervention\Image\Facades\Image::class,
         //\\ Tambahan Laravel Collective Html //\\
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,

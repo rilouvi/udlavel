@@ -13,7 +13,7 @@ class Post extends Model
     protected $fillable=['title','slug','excerpt','body','published_at','category_id','view_count','images'];
 
     protected $dates=['published_at'];
-
+    
     public function author(){
         return $this->belongsTo(User::class);
     }
@@ -32,20 +32,26 @@ class Post extends Model
 
     public function getImageUrlAttribute($value){
         $images_url = "";
+        $directory=config('cms.image.directory');
         if( ! is_null($this->images)){
-            $imagesPath = public_path() . "/img/" . $this->images;
-            if(file_exists($imagesPath)) $images_url = asset("img/" . $this->images);
+            // $imagesPath = public_path() . "/img/" . $this->images;
+            $imagesPath = public_path() . "/{$directory}/" . $this->images;
+            // if(file_exists($imagesPath)) $images_url = asset("img/" . $this->images);
+            if(file_exists($imagesPath)) $images_url = asset("{$directory}/" . $this->images);
         }
         return $images_url;
     }
 
     public function getImageThumbUrlAttribute($value){
         $images_url = "";
+        $directory=config('cms.image.directory');
         if( ! is_null($this->images)){
             $ext = substr(strrchr($this->images, '.'), 1);
             $thumbnail = str_replace(".{$ext}", "_thumb.{$ext}", $this->images);
-            $imagesPath = public_path() . "/img/" . $thumbnail;
-            if(file_exists($imagesPath)) $images_url = asset("img/" . $thumbnail);
+            // $imagesPath = public_path() . "/img/" . $thumbnail;
+            $imagesPath = public_path() . "/{$directory}/" . $thumbnail;
+            // if(file_exists($imagesPath)) $images_url = asset("img/" . $thumbnail);
+            if(file_exists($imagesPath)) $images_url = asset("{$directory}/" . $thumbnail);
         }
         return $images_url;
     }

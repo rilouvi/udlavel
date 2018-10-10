@@ -67,4 +67,12 @@
 22. Pada Controller tambahkan use folder requests
 23. Menambahka form pada view create dengan type file
 24. Menambahkan validasi di reques dan filabel di model serta controller
-25. 
+25. Membuat images thumbnail
+    a. Install composer require intervention/image
+    b. di Config App provider Intervention\Image\ImageServiceProvider::class
+    c. Bisa di copy darihttp://image.intervention.io/getting_started/installation
+    d. Lalu konfigurasi di cmd php artisan vendor:publish --provider="Intervention\Image\ImageServiceProviderLaravel5"
+    e. Terdapat file image.php di config
+    f. Tambahkan Intervention\Image\Facades\Image di Controller
+26. Buat file cms di folder config an isi file tersebut
+27. 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests;
+use Intervention\Image\Facades\Image;
 
 // Gunakan Model Post
 use App\Post;
@@ -20,7 +21,8 @@ class BlogBackController extends BackController
     public function __construct()
     {
         parent::__construct();
-        $this->uploadPath = public_path('img');
+        // $this->uploadPath = public_path('img');
+        $this->uploadPath = public_path(config('cms.image.directory'));
     }
     /**
      * Display a listing of the resource.
@@ -80,7 +82,18 @@ class BlogBackController extends BackController
             $image=$request->file('images');
             $fileName=$image->getClientOriginalName();
             $destination=$this->uploadPath;
-            $image->move($destination, $fileName);
+            // Edit penambahan vendor untuk image
+            // $image->move($destination, $fileName);
+            $successUploaded = $image->move($destination, $fileName);
+            if ($successUploaded) {
+                //Tambahan untuk Thumbnail
+                $width=config('cms.image.thumbnail.width');
+                $height=config('cms.image.thumbnail.height');
+                $extension=$image->getClientOriginalExtension();
+                $thumbnail=str_replace(".{$extension}","_thumb.{$extension}", $fileName);
+                // Image::make($destination . '/' . $fileName)->resize(250,170)->save($destination . '/' . $thumbnail);
+                Image::make($destination . '/' . $fileName)->resize($width,$height)->save($destination . '/' . $thumbnail);
+            }
             $data['images']=$fileName;
         }
         return $data;
