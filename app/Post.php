@@ -10,7 +10,7 @@ class Post extends Model
 {
     //\\Update post view_count Cara Pertama//\\
     // protected $fillable=['view_count'];
-    protected $fillable=['title','slug','excerpt','body','published_at','category_id','view_count'];
+    protected $fillable=['title','slug','excerpt','body','published_at','category_id','view_count','images'];
 
     protected $dates=['published_at'];
 

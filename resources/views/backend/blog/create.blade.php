@@ -34,7 +34,8 @@
                   <div class="box-body ">
                      {!! Form::model($post,[
                          'method'=>'POST',
-                         'route'=>'blog.store'
+                         'route'=>'blog.store',
+                         'files'=>TRUE
                      ]) !!}
 
                      <div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
@@ -79,6 +80,13 @@
                           <span class="help-block">{{ $errors->first('category_id') }}</span>
                         @endif
                     </div>
+                    <div class="form-group {{ $errors->has('images') ? 'has-error' : '' }}">
+                      {!! Form::label('images','Feature Image') !!}
+                      {!! Form::file('images') !!}
+                        @if ($errors->has('images'))
+                          <span class="help-block">{{ $errors->first('images') }}</span>
+                        @endif
+                    </div>                    
 
                     {!! Form::submit('Create Post',['class'=>'btn btn-primary']) !!}
 

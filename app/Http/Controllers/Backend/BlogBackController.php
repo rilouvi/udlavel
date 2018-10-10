@@ -15,6 +15,13 @@ use App\Post;
 class BlogBackController extends BackController
 {
     protected $limit=5;
+
+    protected $uploadPath;
+    public function __construct()
+    {
+        parent::__construct();
+        $this->uploadPath = public_path('img');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -61,8 +68,22 @@ class BlogBackController extends BackController
         //     'published_at'=>'date_format:Y-m-d H:i:s',
         //     'category_id'=>'required'
         // ]);
-        $request->user()->posts()->create($request->all());
+        // $request->user()->posts()->create($request->all());
+        $data = $this->handleRequest($request);
+        $request->user()->posts()->create($data);
         return redirect('/backend/blog')->with('message','Your Post Created Successfully');
+    }
+    private function handleRequest($request)
+    {
+        $data = $request->all();
+        if ($request->hasFile('images')) {
+            $image=$request->file('images');
+            $fileName=$image->getClientOriginalName();
+            $destination=$this->uploadPath;
+            $image->move($destination, $fileName);
+            $data['images']=$fileName;
+        }
+        return $data;
     }
 
     /**

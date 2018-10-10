@@ -65,3 +65,6 @@
     b. Pindah request dari Controller ke post request
     c. Terdapat folder Requests di App\Http\
 22. Pada Controller tambahkan use folder requests
+23. Menambahka form pada view create dengan type file
+24. Menambahkan validasi di reques dan filabel di model serta controller
+25. 
