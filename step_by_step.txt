@@ -75,4 +75,20 @@
     e. Terdapat file image.php di config
     f. Tambahkan Intervention\Image\Facades\Image di Controller
 26. Buat file cms di folder config an isi file tersebut
-27. 
+//==============================\\
+27. Tambahkan function js di create.blade
+28. Gunakan simplemde.com untuk membuat textarea seperti word
+29. Jangan lupa panggil di main.blade dan kasih custom css
+30. Membuat datetimepicker bootstrap dari https://eonasdan.github.io/bootstrap-datetimepicker/
+31. Load semua file css dan js dari cdnjs.com ke main.blade
+    a. moment js css
+    b. datetimepicker js css
+    c. jasny js css
+    d. fonts dari public copi ke backend
+32. Gunakan usage dari web/instalation untuk view createnya
+    a. Untuk gambar dari sini http://www.jasny.net/bootstrap/javascript/#fileinput-examples
+    b. Contoh placeholder gambar https://via.placeholder.com/350x150&text=No+Image
+    c. Untuk datetimepicker dari sini https://eonasdan.github.io/bootstrap-datetimepicker/
+33. Create disesuaikan agar lebih menarik dengan membuat widget dan memindahkan beberapa item input
+34. Pindahkan letak form open dan close
+35. Beri event pada save draft
